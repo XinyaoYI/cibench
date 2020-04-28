@@ -1,0 +1,11 @@
+prefix=/disk1/jtan/benchmarks/gsl-2.5/disable-vec/gcc8-org/install
+exec_prefix=/disk1/jtan/benchmarks/gsl-2.5/disable-vec/gcc8-org/install
+libdir=/disk1/jtan/benchmarks/gsl-2.5/disable-vec/gcc8-org/install/lib
+includedir=/disk1/jtan/benchmarks/gsl-2.5/disable-vec/gcc8-org/install/include
+GSL_CBLAS_LIB=-lgslcblas
+
+Name: GSL
+Description: GNU Scientific Library
+Version: 2.5
+Libs: -L/disk1/jtan/benchmarks/gsl-2.5/disable-vec/gcc8-org/install/lib -lgsl ${GSL_CBLAS_LIB} -lm -lm 
+Cflags: -I/disk1/jtan/benchmarks/gsl-2.5/disable-vec/gcc8-org/install/include
