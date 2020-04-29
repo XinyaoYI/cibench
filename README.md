@@ -31,9 +31,11 @@ To compile the optimized benchmarks:
 $ make opt
 ```
 
+You can easily adjust your compiler preferences by modifying $(COMPILER_CC) and $(COMPILER_CXX) in Makefile. The produced binaries enable the highest optimization levels, including -O3, -Ofast, -march=native, -mtune=native, profile guided optimization (PGO), and link timeoptimization (LTO), the optimization levels can be downgraded by modifying CFLAGSs.
+
 To install USQCD Chroma and GSL, please following the guidance inside corresponding folders.
 
-Due to the copyright of SPEC Benchmark Suite, we will not release the code of Hmmer, H264ref and Povray here, please refer to our paper "What Every Scientific Programmer Should Know AboutCompiler Optimizations?" for the detailed optimization methods.
+Due to the copyright of SPEC Benchmark Suite, we shall not release the code of Hmmer, H264ref and Povray here, please refer to our paper "What Every Scientific Programmer Should Know AboutCompiler Optimizations?" for the detailed optimization methods.
 
 Here we list the inputs we used for your references:
 
