@@ -21,7 +21,7 @@
 
 RELEASE_VERSION = 1.0
 
-CC = /disk1/jtan/mpich/mpich-3.1.3/install/bin/mpicc -cc=gcc -g -O3 -flto
+CC = mpicc -cc=gcc -g -O3 -flto
 #CC1 = mpicc -cc=gcc -g -O3 -flto -fprofile-generate
 #CC2 = mpicc -cc=gcc -g -O3 -flto -fprofile-use -fprofile-correction
 MPI_COMPILE_FLAGS = -I/disk1/jtan/mpich/mpich-3.1.3/install/include
