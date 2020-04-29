@@ -19,4 +19,11 @@
 # To install USQCD Chroma and GSL, please see the guidance inside corresponding folders
 #
 # Due to the copyright of SPEC Benchmark Suite, we will not release the code of Hmmer, H264ref and Povray here, please refer to our paper "What Every Scientific Programmer Should Know AboutCompiler Optimizations?" for the detailed optimization methods
-# cibench
+# 
+# Listing the running commands we use for SPEC for your reference:
+# hmmer: ./hmmer nph3.hmm swiss41
+# h264ref: ./h264ref -d foreman_ref_encoder_baseline.cfg
+# povray:./povray SPEC-benchmark-ref.ini
+#
+# If you have any insights or questions towards CIBENCH please send email to jtan02@email.wm.edu, thanks!
+#
