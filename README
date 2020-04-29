@@ -25,5 +25,5 @@
 # h264ref: ./h264ref -d foreman_ref_encoder_baseline.cfg
 # povray:./povray SPEC-benchmark-ref.ini
 #
-# If you have any insights or questions towards CIBENCH please send email to jtan02@email.wm.edu, thanks!
+# If you have insights or questions towards CIBENCH please send email to jtan02@email.wm.edu, thanks!
 #
