@@ -8,7 +8,7 @@ all: first second
 
 first: 
 	$(CC) $(CC_FLAGS_1) srad.cpp -o srad
-	./srad 6400 6400 0 3100 0 3100 1 0.5 50
+	./srad 6400 6400 0 3100 0 3100 1 0.5 10
 	rm -f srad
  
 second: 

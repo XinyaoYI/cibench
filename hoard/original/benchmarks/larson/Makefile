@@ -1,7 +1,7 @@
 include ../Makefile.inc
 
-PGO_OPT1 = -fprofile-generate
-PGO_OPT2 = -fprofile-use -fprofile-correction
+PGO_OPT1 = -flto -fprofile-generate
+PGO_OPT2 = -flto -fprofile-use -fprofile-correction
 
 all: first second
 

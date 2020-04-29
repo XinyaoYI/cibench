@@ -133,7 +133,6 @@ clean:
 	sample1.tst sample2.tst sample3.tst
 
 blocksort.o: blocksort.c
-	@cat words0
 	$(CC) $(CFLAGS) -c blocksort.c
 huffman.o: huffman.c
 	$(CC) $(CFLAGS) -c huffman.c

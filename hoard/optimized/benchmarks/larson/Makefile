@@ -1,7 +1,7 @@
 include ../Makefile.inc
 
-PGO_OPT1 = -fprofile-generate
-PGO_OPT2 = -fprofile-use -fprofile-correction
+PGO_OPT1 = -g -O3 -Ofast -march=native -mtune=native -flto -fprofile-generate
+PGO_OPT2 = -g -O3 -Ofast -march=native -mtune=native -flto -fprofile-use -fprofile-correction
 
 all: first second
 

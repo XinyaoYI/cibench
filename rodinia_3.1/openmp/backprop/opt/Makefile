@@ -1,6 +1,7 @@
 # C compiler
 CC = gcc
 CC_FLAGS_1 = -g -fopenmp -O3 -Ofast -march=native -mtune=native -flto -fprofile-generate
+
 CC_FLAGS_2 = -g -fopenmp -O3 -Ofast -march=native -mtune=native -flto -fprofile-use -fprofile-correction
 
 
@@ -8,7 +9,7 @@ all: first second
 
 first: backprop.o1 facetrain.o1 imagenet.o1 backprop_kernel.o1 
 	$(CC) $(CC_FLAGS_1) backprop.o facetrain.o imagenet.o backprop_kernel.o -o backprop -lm
-	./backprop 65536000
+	./backprop 6553600
 	rm -rf backprop
 
 second: backprop.o2 facetrain.o2 imagenet.o2 backprop_kernel.o2 
