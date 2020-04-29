@@ -21,22 +21,34 @@ Enjoy the collection of 12 benchmarks and their optimization methods, they are:
 
 Above benchmarks (besides GSL and Chroma) can be compiled individually in their folders, or you can compile them together by following commands:
 
-Use "make org" to compile the original version
+To compile the original benchmarks:
+```sh
+$ make org
+```
 
-Use "make opt" to compile the optimized version
+To compile the optimized benchmarks:
+```sh
+$ make opt
+```
 
 To install USQCD Chroma and GSL, please following the guidance inside corresponding folders.
 
 Due to the copyright of SPEC Benchmark Suite, we will not release the code of Hmmer, H264ref and Povray here, please refer to our paper "What Every Scientific Programmer Should Know AboutCompiler Optimizations?" for the detailed optimization methods.
 
-Here we list our running commands for your reference:
+Here we list the inputs we used for your references:
 
-hmmer: ./hmmer nph3.hmm swiss41
-
-h264ref: ./h264ref -d foreman_ref_encoder_baseline.cfg
-
-povray: ./povray SPEC-benchmark-ref.ini
-
+For hmmer:
+```sh
+$hmmer: ./hmmer nph3.hmm swiss41
+```
+For h264ref:
+```sh
+$h264ref: ./h264ref -d foreman_ref_encoder_baseline.cfg
+```
+For povray:
+```sh
+$povray: ./povray SPEC-benchmark-ref.ini
+```
 
 If you have insights or questions towards CIBENCH please send email to jtan02@email.wm.edu, thanks!
 
