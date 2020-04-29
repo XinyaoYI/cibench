@@ -22,10 +22,10 @@
 RELEASE_VERSION = 1.0
 
 CC = mpicc -cc=gcc -g -O3 -flto
-#CC = mpicc -cc=gcc -g -O3 -flto -fprofile-generate
-#CC = mpicc -cc=gcc -g -O3 -flto -fprofile-use -fprofile-correction
-MPI_COMPILE_FLAGS = -I/disk1/jtan/mpich/mpich-3.1.3/install/include
-MPI_LINK_FLAGS = -L/disk1/jtan/mpich/mpich-3.1.3/install/lib -Wl,-rpath -Wl,/disk1/jtan/mpich/mpich-3.1.3/install/lib -Wl,--enable-new-dtags -lmpi
+#CC1 = mpicc -cc=gcc -g -O3 -flto -fprofile-generate
+#CC2 = mpicc -cc=gcc -g -O3 -flto -fprofile-use -fprofile-correction
+MPI_COMPILE_FLAGS = -I$(MPICC_INCLUDE)
+MPI_LINK_FLAGS = -L$(MPICC_LIBRARY) -Wl,-rpath -Wl,$(MPICC_LABRARY) -Wl,--enable-new-dtags -lmpi
 
 CPPFLAGS = -DVERSION=$(RELEASE_VERSION)
 CFLAGS = -flto $(MPI_COMPILE_FLAGS)
