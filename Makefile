@@ -2,19 +2,19 @@
 COMPILER_CC = gcc
 COMPILER_CXX = g++
 
-# compilation flags for gcc to enable PGO and LTO optimizations
+# Compilation flags for gcc to enable PGO and LTO optimizations
 gcc_pl_gen = -flto -fprofile-generate
 gcc_pl_use = -flto -fprofile-use -fprofile-correction
 GCC_FLAGS1 = $(gcc_pl_gen)
 GCC_FLAGS2 = $(gcc_pl_use)
 
-# compilation flags for icc to enable PGO and LTO optimizations
+# Compilation flags for icc to enable PGO and LTO optimizations
 icc_pl_gen = -flto -prof-gen
 icc_pl_use = -flto -prof-use
 ICC_FLAGS1 = $(icc_pl_gen)
 ICC_FLAGS2 = $(icc_pl_use)
 
-# compilation flags for llvm to enable PGO and LTO optimizetions
+# Compilation flags for llvm to enable PGO and LTO optimizetions
 llvm_pl_gen = -flto=thin -fuse-ld=gold -fprofile-generate
 llvm_pl_use = -flto=thin -fuse-ld=gold -fprofile-use=-default.profdata
 LLVM_FLAGS1 = $(llvm_pl_gen)
@@ -25,7 +25,6 @@ uni = -g -O3 -Ofast -march=native -mtune=native
 omp = -fopenmp
 CFLAGS1 = "$(uni) $(omp) $(GCC_FLAGS1)" #$(ICC_FLAGS1)/$(LLVM_FLAGS1)
 CFLAGS2 = "$(uni) $(omp) $(GCC_FLAGS2)" #$(ICC_FLAGS2)/$(LLVM_FLAGS2)
-
 HFLAGS1 = "$(uni) $(GCC_FLAGS1)"
 HFLAGS2 = "$(uni) $(GCC_FLAGS2)"
 
