@@ -1,4 +1,4 @@
-# CIBENCH: USQCD Chroma
+# USQCD Chroma
 
 # Installation:
 To build the Chroma, please follow the installation instruction on JeffersonLab website: https://github.com/JeffersonLab/chroma
