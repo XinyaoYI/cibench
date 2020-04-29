@@ -63,5 +63,5 @@ clean:
 	cd ./NERSC/smb/org/msgrate && rm -f *.gcda msgrate.o msgrate	
 	cd ./NERSC/smb/opt-msb1/msgrate && rm -f *.gcda msgrate.o msgrate	
 	cd ./NERSC/smb/opt-msb2/msgrate && rm -f *.gcda msgrate.o msgrate	
-	cd /disk2/jtan/cibench/hoard/orginal/benchmarks/larson && rm -f *.gcda larson larson-hoard
-	cd /disk2/jtan/cibench/hoard/optimized/benchmarks/larson && rm -f *.gcda larson larson-hoard
+	cd ./hoard/orginal/benchmarks/larson && rm -f *.gcda larson larson-hoard
+	cd ./hoard/optimized/benchmarks/larson && rm -f *.gcda larson larson-hoard
