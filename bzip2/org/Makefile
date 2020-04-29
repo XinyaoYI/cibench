@@ -15,7 +15,7 @@
 SHELL=/bin/sh
 
 # To assist in cross-compiling
-CC=/disk1/jtan/gcc/gcc-8.2.0/bin/gcc -Ofast -march=native -mtune=native
+CC=gcc -Ofast -march=native -mtune=native
 AR=ar
 RANLIB=ranlib
 LDFLAGS=-flto
