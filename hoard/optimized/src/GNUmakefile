@@ -2,7 +2,7 @@
 # Run make (with no arguments) to see the complete target list.
 
 CPPFLAGS = -std=c++14 -O3 -g -ffast-math -fno-builtin-malloc -Wall -Wextra -Wshadow -Wconversion -Wuninitialized
-CXX = /disk1/jtan/gcc/gcc-6.2.0/bin/g++
+CXX = g++
 #CPPFLAGS = -std=c++1y -O3 -g -ffast-math -fno-builtin-malloc -Wall -Wextra -Wshadow -Wconversion -Wuninitialized
 #CXX = g++
 
