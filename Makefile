@@ -44,9 +44,9 @@ msb_opt2:
 
 # Hoard
 hoard_org:
-	cd /disk2/jtan/cibench/hoard/orginal/benchmarks/larson && $(MAKE)
+	cd ./hoard/orginal/benchmarks/larson && $(MAKE)
 hoard_opt:
-	cd /disk2/jtan/cibench/hoard/optimized/benchmarks/larson && $(MAKE)
+	cd ./hoard/optimized/benchmarks/larson && $(MAKE)
 
 
 clean:
