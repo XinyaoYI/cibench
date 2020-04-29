@@ -31,7 +31,7 @@ To compile the optimized benchmarks:
 $ make opt
 ```
 
-You can easily adjust your compiler preferences by modifying $(COMPILER_CC) and $(COMPILER_CXX) in Makefile. The produced binaries enable the highest optimization levels, including -O3, -Ofast, -march=native, -mtune=native, profile guided optimization (PGO), and link timeoptimization (LTO), the optimization levels can be downgraded by modifying CFLAGSs.
+You can easily adjust your compiler preferences by modifying $(COMPILER_CC) and $(COMPILER_CXX) in Makefile. The produced binaries enable the highest optimization levels, including -O3, -Ofast, -march=native, -mtune=native, profile guided optimization (PGO), and link timeoptimization (LTO), the optimization levels can be downgraded by modifying $(CFLAGS). Since enabling PGO optimization, the "make" process will start with an instrumented compilation, follow by a profiled execution, the information from the profiled execution will be fed back to the compiler.
 
 To install USQCD Chroma and GSL, please following the guidance inside corresponding folders.
 
