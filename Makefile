@@ -28,6 +28,16 @@ CFLAGS2 = "$(uni) $(omp) $(GCC_FLAGS2)" #$(ICC_FLAGS2)/$(LLVM_FLAGS2)
 HFLAGS1 = "$(uni) $(GCC_FLAGS1)"
 HFLAGS2 = "$(uni) $(GCC_FLAGS2)"
 
+# To run msb (msgrate), please have a valid MPI compiler installed and set following paths
+MPICC = 
+MPICC_FLAG = -cc=gcc
+MPICC_INCLUDE = 
+MPICC_LIBRARY = 
+MPI = "$(MPICC) $(MPICC_FLAG)"
+ifndef MPICC
+$(error MPICC is not set)
+endif
+
 # make all original benchmarks
 org: backprop_org lavaMD_org hotspot3D_org srad_org bzip_org msb_org hoard_org
 
@@ -67,11 +77,11 @@ bzip_opt:
 # NERSC8
 # to change the wrapper compiler, i.e. from gcc to icc, please change -cc option in each Makefile
 msb_org:
-	cd ./NERSC/smb/org/msgrate && $(MAKE)
+	cd ./NERSC/smb/org/msgrate && $(MAKE) CC=$(MPI) MPICC_INCLUDE=$(MPICC_INCLUDE) MPICC_LIBRARY=$(MPICC_LIBRARY)
 msb_op1:
-	cd ./NERSC/smb/opt-msb1/msgrate && $(MAKE) 
+	cd ./NERSC/smb/opt-msb1/msgrate && $(MAKE) CC=$(MPI) MPICC_INCLUDE=$(MPICC_INCLUDE) MPICC_LIBRARY=$(MPICC_LIBRARY)
 msb_opt2:
-	cd ./NERSC/smb/opt-msb2/msgrate && $(MAKE)
+	cd ./NERSC/smb/opt-msb2/msgrate && $(MAKE) CC=$(MPI) MPICC_INCLUDE=$(MPICC_INCLUDE) MPICC_LIBRARY=$(MPICC_LIBRARY)
 
 # Hoard
 # For hoard benchmark, please adjust the compile flags here:
