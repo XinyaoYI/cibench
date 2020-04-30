@@ -28,7 +28,7 @@ CFLAGS2 = "$(uni) $(omp) $(GCC_FLAGS2)" #$(ICC_FLAGS2)/$(LLVM_FLAGS2)
 HFLAGS1 = "$(uni) $(GCC_FLAGS1)"
 HFLAGS2 = "$(uni) $(GCC_FLAGS2)"
 
-# To run msb (msgrate), please have a valid MPI compiler installed and set following paths
+# To run msb benchmarks, please have a valid MPI compiler installed and set following paths
 MPICC = 
 MPICC_FLAG = -cc=gcc
 MPICC_INCLUDE = 
