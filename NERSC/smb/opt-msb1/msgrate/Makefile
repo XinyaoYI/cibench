@@ -21,11 +21,17 @@ C = mpicc -cc=gcc
 
 RELEASE_VERSION = 1.0
 
+# Please have a valid MPI compiler installed and set following path
+MPICC = 
 CC = mpicc -cc=gcc -g -O3 -flto
 #CC1 = mpicc -cc=gcc -g -O3 -flto -fprofile-generate
 #CC2 = mpicc -cc=gcc -g -O3 -flto -fprofile-use -fprofile-correction
 MPI_COMPILE_FLAGS = -I$(MPICC_INCLUDE)
 MPI_LINK_FLAGS = -L$(MPICC_LIBRARY) -Wl,-rpath -Wl,$(MPICC_LABRARY) -Wl,--enable-new-dtags -lmpi
+
+ifndef MPICC
+$(error MPICC is not set)
+endif
 
 CPPFLAGS = -DVERSION=$(RELEASE_VERSION)
 CFLAGS = -flto $(MPI_COMPILE_FLAGS)
