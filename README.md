@@ -19,7 +19,7 @@ Enjoy the collection of 12 benchmarks and their optimization methods, they are:
 
 ## Installation:
 
-Above benchmarks (besides GSL and Chroma) can be compiled individually in their folders, or you can compile them together by following commands:
+Above benchmarks (besides FFT and Chroma) can be compiled individually in their folders, or you can compile them together by following commands:
 
 To compile the original benchmarks:
 ```sh
