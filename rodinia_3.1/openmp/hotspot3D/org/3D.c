@@ -91,13 +91,17 @@ void computeTempCPU(float *pIn, float* tIn, float *tOut,
 
     int c,w,e,n,s,b,t;
     int x,y,z;
+    float tmp, tmp2, tmp3;
     int i = 0;
     do{
         for(z = 0; z < nz; z++)
-            for(y = 0; y < ny; y++)
-                for(x = 0; x < nx; x++)
+            for(y = 0; y < ny; y++) {
+                int d = y * nx + z * nx * ny;
+                tmp = tmp2 = tIn[d];
+                for(x = 0; x < nx - 1; x++)
                 {
-                    c = x + y * nx + z * nx * ny;
+                    // c = x + y * nx + z * nx * ny;
+                    c = x + d;
 
                     w = (x == 0) ? c      : c - 1;
                     e = (x == nx - 1) ? c : c + 1;
@@ -106,9 +110,28 @@ void computeTempCPU(float *pIn, float* tIn, float *tOut,
                     b = (z == 0) ? c      : c - nx * ny;
                     t = (z == nz - 1) ? c : c + nx * ny;
 
-
-                    tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+                    // tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+                    
+                    /* difference caused by commutative
+                     tOut[c] = tIn[w]*cw + tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[e]*ce + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+                    */
+                    tmp3 = tIn[e]; 
+                    tOut[c] = tmp2*cc + tIn[n]*cn + tIn[s]*cs + tmp3*ce + tmp*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+                    tmp = tmp2;
+                    tmp2 = tmp3;
+                    // tOut[c] =tmp*cw + (tmp = tmp2)*cc + tIn[n]*cn + tIn[s]*cs + (tmp2 = tIn[e])*ce + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
                 }
+                    c = x + d;
+
+                    w = (x == 0) ? c      : c - 1;
+                    // e = (x == nx - 1) ? c : c + 1;
+                    n = (y == 0) ? c      : c - nx;
+                    s = (y == ny - 1) ? c : c + nx;
+                    b = (z == 0) ? c      : c - nx * ny;
+                    t = (z == nz - 1) ? c : c + nx * ny;
+
+                    tOut[c] = tIn[c]*cc + tIn[n]*cn + tIn[s]*cs + tIn[c]*ce + tIn[w]*cw + tIn[t]*ct + tIn[b]*cb + (dt/Cap) * pIn[c] + ct*amb_temp;
+            }
         float *temp = tIn;
         tIn = tOut;
         tOut = temp; 
@@ -145,7 +168,7 @@ void computeTempOMP(float *pIn, float* tIn, float *tOut,
     ct = cb =stepDivCap/ Rz;
 
     cc = 1.0 - (2.0*ce + 2.0*cn + 3.0*ct);
-
+    // float tmp, tmp2;
 
 #pragma omp parallel
     {
@@ -158,23 +181,45 @@ void computeTempOMP(float *pIn, float* tIn, float *tOut,
 
         do {
             int z; 
-#pragma omp for 
+#pragma omp for // private(tmp, tmp2) 
             for (z = 0; z < nz; z++) {
                 int y;
                 for (y = 0; y < ny; y++) {
                     int x;
-                    for (x = 0; x < nx; x++) {
-                        int c, w, e, n, s, b, t;
-                        c =  x + y * nx + z * nx * ny;
+                    int d = y * nx + z * nx * ny;
+                    float tmp, tmp2, tmp3;
+                    tmp = tmp2 = tIn_t[d];
+                    int c, w, e, n, s, b, t;
+                    for (x = 0; x < nx - 1; x++) {
+                        // c =  x + y * nx + z * nx * ny;
+                        c =  x + d;
                         w = (x == 0)    ? c : c - 1;
                         e = (x == nx-1) ? c : c + 1;
                         n = (y == 0)    ? c : c - nx;
                         s = (y == ny-1) ? c : c + nx;
                         b = (z == 0)    ? c : c - nx * ny;
                         t = (z == nz-1) ? c : c + nx * ny;
-                        tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[e]
+                        // tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[e]
+                        tmp3 = tIn_t[e];
+                        // tOut_t[c] = cw * tmp + cc * (tmp = tmp2) + ce * (tmp2 = tIn_t[e])
+                        tOut_t[c] = cc * tmp2 + cw * tmp + ce * tmp3
                             + cs * tIn_t[s] + cn * tIn_t[n] + cb * tIn_t[b] + ct * tIn_t[t]+(dt/Cap) * pIn[c] + ct*amb_temp;
+                        tmp = tmp2;
+                        tmp2 = tmp3;
                     }
+                    // if (x < nx) {    
+                        c =  x + d;
+                        // c =  x + y * nx + z * nx * ny;
+                        w = (x == 0)    ? c : c - 1;
+                        // e = (x == nx-1) ? c : c + 1;
+                        n = (y == 0)    ? c : c - nx;
+                        s = (y == ny-1) ? c : c + nx;
+                        b = (z == 0)    ? c : c - nx * ny;
+                        t = (z == nz-1) ? c : c + nx * ny;
+                        // tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[e]
+                        tOut_t[c] = cc * tIn_t[c] + cw * tIn_t[w] + ce * tIn_t[c]
+                            + cs * tIn_t[s] + cn * tIn_t[n] + cb * tIn_t[b] + ct * tIn_t[t]+(dt/Cap) * pIn[c] + ct*amb_temp;
+                   // }
                 }
             }
             float *t = tIn_t;

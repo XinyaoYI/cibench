@@ -1,7 +1,7 @@
 CC = gcc -g -O3 -Ofast -march=native -mtune=native -fopenmp
 CCFLAGS1 = -flto -fprofile-generate
 CCFLAGS2 = -flto -fprofile-use -fprofile-correction
-OUTPUT = *.txt
+OUTPUT = *.out
 
 all: first second
 

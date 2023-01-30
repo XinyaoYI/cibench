@@ -321,7 +321,8 @@ float *delta, *ly, **w, **oldw;
   for (j = 1; j <= ndelta; j++) {
     for (k = 0; k <= nly; k++) {
       new_dw = ((ETA * delta[j] * ly[k]) + (MOMENTUM * oldw[k][j]));
-	  w[k][j] += new_dw;
+          if(new_dw != 0.0)
+	     w[k][j] += new_dw;
 	  oldw[k][j] = new_dw;
     }
   }

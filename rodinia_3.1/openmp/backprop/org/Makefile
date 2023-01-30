@@ -1,6 +1,7 @@
 # C compiler
 CC = gcc
 CC_FLAGS_1 = -g -fopenmp -O3 -Ofast -march=native -mtune=native -flto -fprofile-generate
+
 CC_FLAGS_2 = -g -fopenmp -O3 -Ofast -march=native -mtune=native -flto -fprofile-use -fprofile-correction
 
 
